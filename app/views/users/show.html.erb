@@ -1,0 +1,21 @@
+<h3><u><%= @user.f_name.capitalize %>'s Profile</u></h3>
+<div class="user_profile">
+  <p>
+    Name: <%= @user.f_name + ' ' + @user.l_name %>
+  </p>
+  <p>
+    Address: <%= @user.address %>
+  </p>
+  <p>
+    Email ID: <%= @user.email %>
+  </p>
+  <p>
+    Phone Num: <%= @user.phone %>
+  </p>
+  <p>
+    About <%= @user.f_name.capitalize + ' : ' + @user.about_user %>
+  </p>
+</div>
+
+<%= link_to 'Back to Blogging!', blogs_path %><br>
+<%= link_to 'Logout', login_path %>

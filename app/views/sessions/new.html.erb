@@ -1,0 +1,14 @@
+<h3>Welcome to MyBlog, your one stop tech point!</h3>
+
+<h4>Sign IN</h4>
+<%= form_tag do %>
+  <%= label_tag :email, "Email" %>
+  <%= text_field_tag :email, params[:email] %>
+
+  <%= label_tag :password, "Password" %>
+  <%= password_field_tag :password, params[:password] %>
+
+  <%= submit_tag 'Login' %>
+<% end %>
+<br>
+<%= link_to 'New User? Sign Up here', new_user_path %>

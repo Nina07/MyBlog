@@ -1,0 +1,35 @@
+<center>
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <h4><%= pluralize(@user.errors.count,"errors") %> prohibited this record from being saved.</h4>
+    <% end %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+    <%= f.label :f_name %>
+    <%= f.text_field :f_name %><br>
+
+    <%= f.label :l_name %>
+    <%= f.text_field :l_name %><br>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br>
+
+    <%= f.label :address %>
+    <%= f.text_area :address %><br>
+
+    <%= f.label :email %>
+    <%= f.email_field :email %><br>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone %><br>
+
+    <%= f.label :about_user %>
+    <%= f.text_area :about_user %><br>
+
+    <%= f.submit %>
+  <% end %>
+</center>

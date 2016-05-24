@@ -1,0 +1,36 @@
+<table border=1>
+  <tr>
+    <th>User Name</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+      <td><%= user.f_name + '' + user.l_name  %></td>
+      <td><%= user.address %></td>
+      <td><%= user.email %></td>
+      <td><%= user.phone %></td>
+      <td><%= link_to 'Show', user_path(user) %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user_path(user), method: :delete %></td>
+  <% end %>
+  </tr>
+</table>
+<%= form_for @blog do |f| %>
+  <% if @blog.errors.any? %>
+    <h3><%= pluralize(@blog.errors.count,"error") %> prohibited it from being saved !</h3>
+  <% end %>
+  <ul>
+    <% @blog.errors.full_messages.each do |msg| %>
+      <li><%= msg %><br></li>
+    <% end %>
+  </ul>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%#= f.submit %>
+<% end %>
