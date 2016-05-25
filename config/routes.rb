@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, except: :index
 
-  resources :blogs
+  resources :blogs, except: :index
 
   controller :sessions do
     get 'login' => :new

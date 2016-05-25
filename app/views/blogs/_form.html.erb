@@ -1,25 +1,21 @@
+<%= form_for @blog do |f| %>
+  <% if @blog.errors.any? %>
+    <h3><%= pluralize(@blog.errors.count,"error") %> prohibited it from being saved !</h3>
+  <% end %>
+  <ul>
+    <% @blog.errors.full_messages.each do |msg| %>
+      <li><%= msg %><br></li>
+    <% end %>
+  </ul>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <!-- Include Font Awesome. -->
-  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <!-- Include Editor style. -->
-  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
-  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-  <form action="create">
-    <textarea name="editor_content" id="myEditor"></textarea><br>
-    <button>Submit</button>
-  </form>
-
-  <script>
-    $(function() {
-      $('#myEditor').froalaEditor({toolbarInline: false})
-    });
-  </script>
-</body>
-</html>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br><br>
+  <%= f.text_area :body, id: :myEditor %>
+  <br><br>
+  <div id="button">
+    <%= f.submit %>
+  </div>
+<% end %>

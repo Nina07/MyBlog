@@ -1,14 +1,17 @@
-<h3>Welcome to MyBlog, your one stop tech point!</h3>
-
-<h4>Sign IN</h4>
+<h3><u>MyBlog, your one stop tech point!</u></h3>
+<br>
+<% flash.each do |k,v| %>
+  <h3><%= v %></h3>
+<% end %>
+<h4><u>Sign IN</u></h4>
 <%= form_tag do %>
   <%= label_tag :email, "Email" %>
   <%= text_field_tag :email, params[:email] %>
-
+  <br><br>
   <%= label_tag :password, "Password" %>
   <%= password_field_tag :password, params[:password] %>
-
+  <br><br>
   <%= submit_tag 'Login' %>
 <% end %>
 <br>
-<%= link_to 'New User? Sign Up here', new_user_path %>
+<center><%= link_to 'New User? Sign Up here', new_user_path %></center>

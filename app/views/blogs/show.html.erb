@@ -1,2 +1,10 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<h2><%= @blog.user.f_name %>'s Blogs</h2>
+<legend><%= @blog.title %></legend>
+<%= raw(@blog.body) %>
+<p>
+  <%= link_to 'Edit Blog', edit_blog_path(@blog) %><br>
+  <%= link_to 'My Profile', user_path(@blog.user_id) %><br>
+  <%= link_to 'Logout', root_path %>
+</p>
+
+

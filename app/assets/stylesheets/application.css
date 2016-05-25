@@ -18,3 +18,28 @@
  *= require froala_style.min.css
  *= require font-awesome
  */
+h1 {
+    color: orange;
+    text-align: center;
+}
+
+h3,h4 {
+    text-align: center ; 
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 20px;
+    text-align: center;
+}
+button{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+a{
+    font-size: 20px;
+}
+legend{
+    font-family: "Times New Roman";
+    font-size: 20px;
+}

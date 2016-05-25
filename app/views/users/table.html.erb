@@ -17,20 +17,7 @@
   <% end %>
   </tr>
 </table>
-<%= form_for @blog do |f| %>
-  <% if @blog.errors.any? %>
-    <h3><%= pluralize(@blog.errors.count,"error") %> prohibited it from being saved !</h3>
-  <% end %>
-  <ul>
-    <% @blog.errors.full_messages.each do |msg| %>
-      <li><%= msg %><br></li>
-    <% end %>
-  </ul>
-  <%= f.label :category %>
-  <%= f.text_field :category %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%#= f.submit %>
-<% end %>
+<form method="POST">
+  <textarea name="editor_content" id="myEditor"></textarea><br>
+  <button>Submit</button>
+</form>

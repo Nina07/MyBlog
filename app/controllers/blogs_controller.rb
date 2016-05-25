@@ -1,16 +1,12 @@
 class BlogsController < ApplicationController
   before_action :current_user
-  def index
-    @blogs = Blog.all
-  end
-
   def new
     @blog = Blog.new
+    @current_user = current_user
   end
 
   def create
-    byebug
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.new(blog_params)
     if @blog.save
       redirect_to @blog
     else
@@ -23,12 +19,23 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = Blog.find(params[:id])
   end
 
   def update
+    @blog = Blog.find(params[:id])
+    if @blog.update(blog_params)
+      redirect_to @blog
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @blog = Blog.find(params[:id])
+    if @blog.destroy
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private

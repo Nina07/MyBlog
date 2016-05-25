@@ -12,24 +12,23 @@
     <%= f.label :l_name %>
     <%= f.text_field :l_name %><br>
 
+    <%= f.label :email %>
+    <%= f.email_field :email %><br>
+
     <%= f.label :password %>
     <%= f.password_field :password %><br>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br>
-
     <%= f.label :address %>
     <%= f.text_area :address %><br>
-
-    <%= f.label :email %>
-    <%= f.email_field :email %><br>
 
     <%= f.label :phone %>
     <%= f.text_field :phone %><br>
 
     <%= f.label :about_user %>
     <%= f.text_area :about_user %><br>
-
-    <%= f.submit %>
+    <br>
+    <div id="button">
+        <%= f.submit %>
+    </div>
   <% end %>
 </center>
