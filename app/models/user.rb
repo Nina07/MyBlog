@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :password, length: { minimum: 6 }
   has_many :blogs, dependent: :destroy
+  has_many :comments, through: :blogs
 
   def authenticate(password)
     password == User.find(self.id).password
