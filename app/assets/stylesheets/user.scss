@@ -1,0 +1,44 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user_profile {
+  background-color: #d0e4fe;
+  font-family: "Times New Roman";
+  height: 100% ;
+  width: 49% ;
+  float: left;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.user_blog {
+  background-color: #d0e4fe;
+  font-family: "Times New Roman";
+  height: 100% ;
+  width: 49% ;
+  float: right;
+  margin-top: 5px;
+  text-align: center;
+}
+h2 {
+  margin-left: 230px;
+  width:30%;
+  height: 15%
+}
+h3 {
+  text-align: center;
+  margin-top: 30px;
+  margin-right: auto;
+}
+input {
+    width: 15%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+label {
+  margin-right: 15px;
+  text-align: right;
+  display:inline-block;
+  width:100px;
+}
+

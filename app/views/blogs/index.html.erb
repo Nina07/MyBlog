@@ -1,0 +1,23 @@
+<h3>User Blogs</h3>
+<% @blogs.each do |blog| %>
+  <u><h4><%= blog.title %></h4></u>
+  <div id="blog_body">
+    <%= blog.body %>
+  </div>
+  <h4>Comments</h4>
+  <% blog.comments.each do |comment| %>
+  <ul>
+    <li>
+      <%= comment.data %>
+      <%= link_to 'Edit', edit_blog_comment_path(blog.id,comment.id) %>
+      <%= link_to 'Delete', blog_comment_path(blog.id,comment.id), 
+          method: :delete, data: { confirm: 'Are you sure?'} %>
+    </li>
+  </ul>    
+  <% end %>
+  <%= form_for [blog,@comment], url: blog_comments_path(blog.id) do |f| %>
+    <%= f.label :comment %>
+    <%= f.text_area :data %>
+    <center><%= f.submit 'Post' %></center>
+  <% end %>
+<% end %>

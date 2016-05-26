@@ -1,0 +1,47 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ /*
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require font-awesome
+ */
+form {
+  text-align: left ;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+p {
+  font-style: "Courier New"
+}
+label{
+    display:inline-block;
+    width:70px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 3px;
+    position: relative;
+}
+
+#comment_data{
+  display:inline-block;
+  width:90%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 8px;
+}
+h2 {
+  
+}
+h3 {
+  text-align: center;
+}
+h4 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+#blog_body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+

@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   before_action :current_user
   def index
     @blogs = Blog.all
+    @comment = Comment.new
   end
 
   def new
