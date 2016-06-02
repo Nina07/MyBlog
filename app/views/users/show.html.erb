@@ -1,4 +1,7 @@
-<h3><u><%= @user.f_name.capitalize %>'s Profile</u></h3>
+<section>
+<div id="profile">
+  <%= @user.f_name.capitalize %>'s Profile
+</div>
 <div class="user_profile">
   <p>
     Name: <%= @user.f_name + ' ' + @user.l_name %>
@@ -24,7 +27,10 @@
   </p>
 </div>
 
-<h3><u><%= @user.f_name %>'s Blogs</h3></u>
+<div id="blogs">
+  <%= @user.f_name %>'s Blogs
+</div>
+<div class="user_blogs">
 <% if @blogs.present? %>
   <% @blogs.each do |blog| %>
     <p><%= link_to "#{blog.title}", blog_path(blog.id) %><br>
@@ -35,7 +41,11 @@
 <% else %>
   <p>You do not have any Blog yet. Quick, make one !</p>
 <% end %>
-<center>
+  <center>
   <%= link_to 'Add new Blog!', new_blog_path %><br>
-  <%= link_to 'Logout', root_path %>
+  <%= link_to 'Check out other Blogs!' , blogs_path %><br>
+  <%= link_to 'Logout', logout_path(@user.id) , controller: 'sessions', method: :delete %>
 </center>
+</div>
+</section>
+

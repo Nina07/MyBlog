@@ -9,7 +9,6 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
  *= require_tree .
  *= require_self
  */
@@ -23,7 +22,7 @@ h1 {
     text-align: center;
 }
 
-h3,h4 {
+h2,h3 {
     text-align: center ; 
 }
 
@@ -42,4 +41,7 @@ a{
 legend{
     font-family: "Times New Roman";
     font-size: 20px;
+}
+.field_with_errors {
+    display: inline;
 }

@@ -1,15 +1,15 @@
 <center>
   <%= form_for @user do |f| %>
     <% if @user.errors.any? %>
-      <h4><%= pluralize(@user.errors.count,"errors") %> prohibited this record from being saved.</h4>
+      <h4><center><%= pluralize(@user.errors.count,"error") %> prohibited this record from being saved.<center></h4>
     <% end %>
     <% @user.errors.full_messages.each do |msg| %>
       <%= msg %><br>
     <% end %>
-    <%= f.label :f_name %>
+    <%= f.label :first_name %>
     <%= f.text_field :f_name %><br>
 
-    <%= f.label :l_name %>
+    <%= f.label :last_name %>
     <%= f.text_field :l_name %><br>
 
     <%= f.label :email %>
@@ -18,11 +18,14 @@
     <%= f.label :password %>
     <%= f.password_field :password %><br>
 
-    <%= f.label :address %>
-    <%= f.text_area :address %><br>
+    <%= f.label :confirm_password %>
+    <%= f.password_field :password_confirmation %><br>
 
     <%= f.label :phone %>
     <%= f.text_field :phone %><br>
+    
+    <%= f.label :address %>
+    <%= f.text_area :address %><br>
 
     <%= f.label :about_user %>
     <%= f.text_area :about_user %><br>

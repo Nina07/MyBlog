@@ -1,6 +1,12 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// section {
+//   background: #B5D6FD;
+// }
+h3 {
+  text-align: center ;
+}
 form {
   text-align: center ;
 }
@@ -12,7 +18,6 @@ label{
 }
 textarea{
   display:inline-block;
-  width:150px;
   margin-top: 5px;
   margin-bottom: 5px;
 }

@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def current_user
-    current_user = User.find(session[:user_id])
-    rescue ActiveRecord::RecordNotFound
-      @user = User.create
-      session[:user_id] = @user.id
+    begin
+      current_user = User.find(session[:user_id])
+    rescue Exception
+      flash[:notice] = "Please login first !!"
+      render 'sessions/new'
+    end
   end
 end

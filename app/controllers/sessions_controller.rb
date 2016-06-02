@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
+  layout 'sessions'
   def new
     @user = User.new
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    byebug
+    user = User.find_by(email: params[:email], password: params[:password])
+    if user
       session[:user_id] = user.id
       redirect_to user_path(user.id)
     else
@@ -15,8 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    byebug
     session[:user_id] = nil
-    @user.destroy
     redirect_to login_path
   end
 end

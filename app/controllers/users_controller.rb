@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :find_user, except: [:new, :create]
   def new
     @user = User.new
   end
@@ -13,16 +14,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = find_user
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = find_user
     @blogs = @user.blogs 
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = find_user
     if @user.update(user_params)
       redirect_to @user
     else
@@ -31,12 +32,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = find_user
     @user.destroy
     redirect_to root_path
   end
 
   private
+  def find_user
+    User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:f_name,:l_name,:password,:password_confirmation,:address,:email,:phone,:about_user)
   end

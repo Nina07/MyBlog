@@ -1,8 +1,11 @@
 class BlogsController < ApplicationController
   before_action :current_user
+  layout 'blog'
   def index
+    byebug
     @blogs = Blog.all
     @comment = Comment.new
+    @current_user = current_user
   end
 
   def new
@@ -12,11 +15,13 @@ class BlogsController < ApplicationController
   end
 
   def create
+    byebug
     @blog = current_user.blogs.new(blog_params)
     if @blog.save
       redirect_to @blog
     else
       render 'new'
+      # redirect_to new_blog_path
     end
   end
 

@@ -1,6 +1,5 @@
-<h2><%= @blog.user.f_name %>'s Blogs</h2>
 <legend><%= @blog.title %></legend>
-<%= raw(@blog.body) %>
+<p><%= strip_tags(@blog.body) %></p>
 <p>
   <%= link_to 'Edit Blog', edit_blog_path(@blog) %><br>
   <%= link_to 'My Profile', user_path(@blog.user_id) %><br>

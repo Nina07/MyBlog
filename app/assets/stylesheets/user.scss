@@ -1,6 +1,12 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+section {
+  width: 100%;
+  height: 500px;
+  background: #B5D6FD;
+}
+
 .user_profile {
   background-color: #d0e4fe;
   font-family: "Times New Roman";
@@ -11,7 +17,7 @@
   text-align: center;
 }
 
-.user_blog {
+.user_blogs {
   background-color: #d0e4fe;
   font-family: "Times New Roman";
   height: 100% ;
@@ -22,21 +28,33 @@
 }
 h2 {
   margin-left: 230px;
-  width:30%;
-  height: 15%
+  width:480px;
+  height: 18px;
 }
-h3 {
+
+#profile{
   text-align: center;
-  margin-top: 30px;
-  margin-right: auto;
+  margin-bottom: 15px;
+  margin-left: 35px;
+  margin-top: 5px;
+  width:49%;
+  font-style: italic;
+  font-size: 30px;
+  float: left;
+}
+#blogs{
+  margin-top: 5px;
+  text-align: center;
+  height: 18px;
+  font-style: italic;
+  font-size: 30px;
 }
 input {
-    width: 15%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  // width: 15%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 label {
-  margin-right: 15px;
   text-align: right;
   display:inline-block;
   width:100px;

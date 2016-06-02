@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @blog = Blog.find(params[:blog_id])
+    @blog = find_blog
     @comment = @blog.comments.new(comment_params)
     if @comment.save
       redirect_to blogs_path
@@ -15,24 +15,32 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:blog_id])
-    @comment = Comment.find(params[:id])
+    @blog = find_blog
+    @comment = find_comment
   end
 
   def update
-    @comment = Comment.find(params[:id])
+    @blog = find_blog
+    @comment = find_comment
     @comment.update(comment_params)
   end
 
   def destroy
-    @blog = Blog.find(params[:blog_id])
-    @comment = Comment.find(params[:id])
-    if @comment.destroy
-      render 'blogs/index'
-    end
+    @blog = find_blog
+    @comment = find_comment
+    @comment.destroy
+    redirect_to blogs_path
   end
 
   private
+  def find_blog
+    Blog.find(params[:blog_id])    
+  end
+
+  def find_comment
+    Comment.find(params[:id])
+  end
+
   def comment_params
     params.require(:comment).permit(:user_id,:blog_id,:data)
   end
