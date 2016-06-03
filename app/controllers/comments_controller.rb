@@ -1,44 +1,43 @@
 class CommentsController < ApplicationController
-  before_action :current_user
+  before_action :find_blog
+  before_action :find_comment, only: [:update, :destroy]
   def new
     @comment = Comment.new
   end
 
   def create
-    @blog = find_blog
     @comment = @blog.comments.new(comment_params)
     if @comment.save
-      redirect_to blogs_path
+      redirect_to @blog
     else
       render text: 'Try again'
     end
   end
 
-  def edit
-    @blog = find_blog
-    @comment = find_comment
-  end
+  # def edit
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  #   # @blog = find_blog
+  #   # @comment = find_comment
+  # end
 
   def update
-    @blog = find_blog
-    @comment = find_comment
     @comment.update(comment_params)
   end
 
   def destroy
-    @blog = find_blog
-    @comment = find_comment
     @comment.destroy
     redirect_to blogs_path
   end
 
   private
   def find_blog
-    Blog.find(params[:blog_id])    
+    @blog = Blog.find(params[:blog_id])    
   end
 
   def find_comment
-    Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

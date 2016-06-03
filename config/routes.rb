@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments, except: [:index,:show]
   end
 
+ # resources :sessions, except: [:edit, :update, :index]
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

@@ -1,10 +1,9 @@
-<section>
 <div id="profile">
-  <%= @user.f_name.capitalize %>'s Profile
+  <%= @user.f_name %>'s Profile
 </div>
 <div class="user_profile">
   <p>
-    Name: <%= @user.f_name + ' ' + @user.l_name %>
+    Name: <%= @user.full_name %>
   </p>
   <p>
     Address: <%= @user.address %>
@@ -16,7 +15,7 @@
     Phone Num: <%= @user.phone %>
   </p>
   <p>
-    About <%= @user.f_name.capitalize + ' : ' + @user.about_user %>
+    About <%= @user.f_name + ' : ' + @user.about_user %>
   </p>
   <p>
     <%= link_to 'Edit Profile', edit_user_path(@user) %>
@@ -33,19 +32,16 @@
 <div class="user_blogs">
 <% if @blogs.present? %>
   <% @blogs.each do |blog| %>
-    <p><%= link_to "#{blog.title}", blog_path(blog.id) %><br>
-       <%= link_to 'Edit Blog', edit_blog_path(blog.id) %>
-       <%= link_to 'Destroy Blog', blog_path(blog.id), method: :delete, data: { confirm: 'Are you sure?'} %>
+    <p><%= link_to "#{blog.title}", blog_path(blog) %><br>
+       <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+       <%= link_to 'Destroy Blog', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'} %>
     </p>
   <% end %>
 <% else %>
   <p>You do not have any Blog yet. Quick, make one !</p>
 <% end %>
-  <center>
   <%= link_to 'Add new Blog!', new_blog_path %><br>
   <%= link_to 'Check out other Blogs!' , blogs_path %><br>
-  <%= link_to 'Logout', logout_path(@user.id) , controller: 'sessions', method: :delete %>
-</center>
+  <%= link_to 'Logout', logout_path, method: :delete %> 
 </div>
-</section>
 

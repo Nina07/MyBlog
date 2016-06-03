@@ -3,8 +3,9 @@
 <head>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'user', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
-<body>
+<body bgcolor="#d0e4fe">
   <%= yield %>
 </body>
 </html>

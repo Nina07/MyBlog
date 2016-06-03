@@ -21,3 +21,22 @@
   <textarea name="editor_content" id="myEditor"></textarea><br>
   <button>Submit</button>
 </form>
+
+  <u>Comments</u>
+  <% blog.comments.each do |comment| %>
+  <ul>
+    <li>
+      <%= comment.data %>
+      <%= link_to 'Edit', edit_blog_comment_path(blog,comment) %>
+      <%= link_to 'Delete', blog_comment_path(blog,comment), 
+        method: :delete , data: { confirm: 'Are you sure?'} %>
+    </li>
+  </ul>    
+  <% end %>
+  <%= form_for [blog, blog.comments.build], url: blog_comments_path(blog) do |f| %>
+    <%= f.label :comment %>
+    <%= f.text_area :data %>
+    <center><%= f.submit 'Post' %></center>
+  <% end %>
+
+

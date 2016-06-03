@@ -5,23 +5,23 @@
  */
 
 form {
-  text-align: left ;
+  text-align: center ;
   margin-top: 1px;
   margin-bottom: 1px;
 }
 p {
   font-style: "Courier New";
-  text-align: center;
+  /*text-align: center;*/
 }
-label{
+input {
+  display: inline-block;  
+}
+/*label{
     display:inline-block;
-    width:60px;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-right: 3px;
-    position: relative;
-    text-align: center;
-}
+}*/
 
 #comment_data{
   display:inline-block;
@@ -38,7 +38,8 @@ h3 {
 }
 legend {
   margin-top: 20px;
-  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
   font-style: italic;
   font-size: 25px;
 }
@@ -57,4 +58,7 @@ a {
 }
 #button{
   text-align: center;
+}
+.field_with_errors{
+  display: inline-block;
 }
