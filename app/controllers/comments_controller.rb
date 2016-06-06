@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :find_blog
-  before_action :find_comment, only: [:update, :destroy]
+  before_action :find_blog, :current_user
+  before_action :find_comment, only: [:edit, :update, :destroy]
   def new
     @comment = Comment.new
   end
@@ -8,22 +8,24 @@ class CommentsController < ApplicationController
   def create
     @comment = @blog.comments.new(comment_params)
     if @comment.save
-      redirect_to @blog
+      respond_to do |format|
+        format.html { redirect_to @blog }
+        format.js # will render create.js.erb
+      end
     else
       render text: 'Try again'
     end
   end
 
-  # def edit
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  #   # @blog = find_blog
-  #   # @comment = find_comment
-  # end
+  def edit
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def update
     @comment.update(comment_params)
+    redirect_to blog_path(@comment.blog_id)
   end
 
   def destroy

@@ -3,7 +3,7 @@
   <head>
   <title>User Blogs</title>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'blog', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'bootstrap_and_overrides', media: 'all', 'data-turbolinks-track' => true %>
     <meta charset="utf-8">
     <!-- Include Font Awesome. -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -12,8 +12,19 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body bgcolor="#d0e4fe">
+  <body>
+   <nav class="navbar navbar-default">
+    <div class="container">
+<!--       <div class="navbar-header">
+        <a class="navbar-brand" href="">MyBlog</a>
+      </div -->
+      <ul class="nav navbar-nav">
+        <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+        <li class="active"><a class="navbar-brand" href="/blogs">User Blogs</a></li>
+        <li><a href="blogs/about_us">About MyBlog</a></li>
+      </ul><br><br><br>
     <%= yield %>
+    </nav>
   </body>
 </html>
 <script>

@@ -1,4 +1,4 @@
-<%= form_for [@blog,@comment], url: blog_comments_path(@blog) do |f| %>
+<%= form_for [@blog,@comment], url: blog_comment_path(@blog,@comment) do |f| %>
   <%= f.label :comment %>
   <%= f.text_area :data %>
   <center><%= f.submit 'Post' %></center>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users, except: :index
 
   resources :blogs do
+    collection do
+      get 'about_us'
+    end
     resources :comments, except: [:index,:show]
   end
 
@@ -11,7 +14,6 @@ Rails.application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

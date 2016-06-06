@@ -1,21 +1,21 @@
 <legend><%= @blog.title %></legend>
 <p><%= sanitize @blog.body, tags: %w(b i u) %></p>
-<strong>Comments</strong><br>
-<% @blog.comments.each do |comment| %>
-    <p><%= comment.data %>
-    <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
-    <%= link_to 'Delete', blog_comment_path(@blog,comment), 
-      method: :delete , data: { confirm: 'Are you sure?'} %></p>
-<% end %>
-<%= form_for [@blog, @blog.comments.build], url: blog_comments_path(@blog) do |f| %>
-  <%= f.label :comment %>
-  <%= f.text_area :data %>
-  <center><%= f.submit 'Post' %></center>
-<% end %>
-<legend>
-  <%= link_to 'My Profile', user_path(@blog.user_id) %><br>
-  <%#= link_to 'Edit Blog', edit_blog_path(@blog) %><br>
-  <%= link_to 'Back', blogs_path %><br>
-  <%= link_to 'Logout', root_path %>
-</legend>
+<%= link_to 'Comments' ,"#", id: "comments-link" %><br>
+<section id="comments-section">
+  <div id="blog_comments">
+    <% @blog.comments.each do |comment| %>
+      <div class="well">
+        <p><%= comment.data %>
+        <div id="edit_comment">
+          <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
+        <%= link_to 'Delete', blog_comment_path(@blog,comment), 
+          method: :delete , data: { confirm: 'Are you sure?'} %>
+        <%= Time.now.strftime('%d/%m/%y %T') %></p>
+        </div>
+      </div>
+    <% end %>
+<%= render partial: '/comments/form' %>
+  </div>
+</section>
+
 

@@ -1,47 +1,45 @@
 <div id="profile">
-  <%= @user.f_name %>'s Profile
+  <h3><%= @user.f_name.capitalize %>'s Profile</h3>
 </div>
 <div class="user_profile">
-  <p>
+  <div class="well">
     Name: <%= @user.full_name %>
-  </p>
-  <p>
+    <br>
     Address: <%= @user.address %>
-  </p>
-  <p>
+    <br>
     Email ID: <%= @user.email %>
-  </p>
-  <p>
+    <br>
     Phone Num: <%= @user.phone %>
-  </p>
-  <p>
+    <br>
     About <%= @user.f_name + ' : ' + @user.about_user %>
-  </p>
-  <p>
+  </div>
+  <div class="well">
     <%= link_to 'Edit Profile', edit_user_path(@user) %>
-  </p>
-  <p>
     <%= link_to 'Delete Account', user_path(@user), method: :delete, data: {
       confirm: 'Are you sure you want to delete your account ?'} %>
-  </p>
+  </div>
 </div>
 
 <div id="blogs">
-  <%= @user.f_name %>'s Blogs
+  <h3><%= @user.f_name %>'s Blogs</h3>
 </div>
-<div class="user_blogs">
-<% if @blogs.present? %>
-  <% @blogs.each do |blog| %>
-    <p><%= link_to "#{blog.title}", blog_path(blog) %><br>
-       <%= link_to 'Edit Blog', edit_blog_path(blog) %>
-       <%= link_to 'Destroy Blog', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'} %>
-    </p>
+<div class="well">
+  <div class="user_blogs">
+  <% if @blogs.present? %>
+    <% @blogs.each do |blog| %>
+      <p><%= link_to "#{blog.title}", blog_path(blog) %><br>
+         <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+         <%= link_to 'Destroy Blog', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?'} %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>You do not have any Blog yet. Quick, make one !</p>
   <% end %>
-<% else %>
-  <p>You do not have any Blog yet. Quick, make one !</p>
-<% end %>
-  <%= link_to 'Add new Blog!', new_blog_path %><br>
-  <%= link_to 'Check out other Blogs!' , blogs_path %><br>
-  <%= link_to 'Logout', logout_path, method: :delete %> 
+<div class="well">
+    <%= link_to 'Add new Blog!', new_blog_path %><br>
+    <%= link_to 'Check out other Blogs!' , blogs_path %><br>
+    <%= link_to 'Logout', logout_path, method: :delete %> 
+  </div>
+</div>
 </div>
 

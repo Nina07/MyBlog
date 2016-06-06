@@ -1,3 +1,4 @@
+<center>
 <h3><u>MyBlog, your one stop tech point!</u></h3>
 <% flash.each do |k,v| %>
   <h3><%= v %></h3>
@@ -11,8 +12,9 @@
   <%= label_tag :password, "Password" %>
   <%= password_field_tag :password, params[:password] %>
   <br><br>
-    <%= submit_tag 'Login' , id: "button" %><br>
+    <%= submit_tag 'Login' , id: "button" %><br><br>
   <%= link_to 'New User? Sign Up here', new_user_path %>
 <% end %>
 <br>
+</center>
 

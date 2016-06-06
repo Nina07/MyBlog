@@ -1,5 +1,3 @@
-<h3>User Blogs</h3>
-<center><%= link_to 'My Profile', user_path(current_user) %></center>
 <% @blogs.each do |blog| %>
   <div id="blog_body">
     <u><%= link_to "#{blog.title}", blog_path(blog) %></u><br>
