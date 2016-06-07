@@ -6,6 +6,7 @@ module UsersHelper
   end
 
   def authenticate_user
+    byebug
     unless session[:user_id]
       flash[:notice] = "Please login first !!"
       redirect_to login_path

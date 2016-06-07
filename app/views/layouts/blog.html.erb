@@ -15,13 +15,12 @@
   <body>
    <nav class="navbar navbar-default">
     <div class="container">
-<!--       <div class="navbar-header">
-        <a class="navbar-brand" href="">MyBlog</a>
-      </div -->
       <ul class="nav navbar-nav">
-        <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
-        <li class="active"><a class="navbar-brand" href="/blogs">User Blogs</a></li>
-        <li><a href="blogs/about_us">About MyBlog</a></li>
+      <% if session[:user_id] %>
+        <li><%= link_to 'My Profile' , user_path(current_user) %></li>
+      <% end %>
+        <li class="active"><%= link_to 'UserBlogs', blogs_path %></li>
+        <li><%= link_to 'About Us', about_us_blogs_path %></li>
       </ul><br><br><br>
     <%= yield %>
     </nav>

@@ -5,13 +5,16 @@
   <div id="blog_comments">
     <% @blog.comments.each do |comment| %>
       <div class="well">
-        <p><%= comment.data %>
         <div id="edit_comment">
-          <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
-        <%= link_to 'Delete', blog_comment_path(@blog,comment), 
-          method: :delete , data: { confirm: 'Are you sure?'} %>
-        <%= Time.now.strftime('%d/%m/%y %T') %></p>
+          <p><%= comment.data %>
         </div>
+        <% if session[:user_id] %>
+          <div id="comment_links">
+            <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
+            <%= link_to 'Delete', blog_comment_path(@blog,comment), 
+              method: :delete , data: { confirm: 'Are you sure?'} %></p>
+          </div>
+        <% end %>
       </div>
     <% end %>
 <%= render partial: '/comments/form' %>

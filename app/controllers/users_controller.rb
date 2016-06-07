@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, except: [:new, :create]
+  before_action :authenticate_user #, except: [:new, :create]
   skip_before_action :authenticate_user , only: [:new,:create]
   layout 'user'
 
@@ -9,7 +10,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    byebug
     if @user.save
       redirect_to @user
     else

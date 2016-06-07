@@ -1,6 +1,9 @@
 <% @blogs.each do |blog| %>
   <div id="blog_body">
-    <u><%= link_to "#{blog.title}", blog_path(blog) %></u><br>
-    <p><%= sanitize blog.body, tags: %w(b i u) %><br></p>
+    <u><%= link_to "#{blog.title}", blog_path(blog) %></u>
+    <% if session[:user_id] && blog.user_id == current_user.id %>
+      <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+    <% end %><br>
+    <p><%= sanitize (blog.body).slice(0..120) + '.........', tags: %w(b i u) %> <%=link_to 'Read More', blog_path(blog) %><br></p>
   </div>
 <% end %>

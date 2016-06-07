@@ -10,13 +10,10 @@
 <body>
   <nav class="navbar navbar-default">
     <div class="container">
-<!--       <div class="navbar-header">
-        <a class="navbar-brand" href="">MyBlog</a>
-      </div> -->
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/users/<%= @user.id %>">My Profile</a><br></li>
-        <li><a href="/blogs">User Blogs</a></li> 
-        <li><a href="/blogs/about_us">About MyBlog</a></li> 
+        <li class="active"><%= link_to 'My Profile', user_path(@user.id)%></li>
+        <li><%= link_to 'User Blogs', blogs_path %></li>
+        <li><%= link_to 'About Us', about_us_blogs_path %></li>
         <%= yield %>
       </ul>
     </div>

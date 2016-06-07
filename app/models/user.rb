@@ -10,12 +10,6 @@ class User < ActiveRecord::Base
   has_many :blogs, dependent: :destroy
   has_many :comments, through: :blogs
 
-  before_create :capitalize_name
-
-  def capitalize_name
-    f_name.capitalize! && l_name.capitalize!
-  end
-
   def full_name
     f_name.capitalize + ' ' + l_name.capitalize
   end
