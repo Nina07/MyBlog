@@ -6,10 +6,16 @@ module UsersHelper
   end
 
   def authenticate_user
-    byebug
     unless session[:user_id]
       flash[:notice] = "Please login first !!"
-      redirect_to login_path
+      respond_to do |format|
+        format.html { redirect_to login_path }
+        format.js { render 'sessions/new' }
+      end
     end
+  end
+
+  def blog_owner?
+    session[:user_id] == @blog.user_id
   end
 end

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @blogs = @user.blogs 
+      @blogs = @user.blogs
   end
 
   def update

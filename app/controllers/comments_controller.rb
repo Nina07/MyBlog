@@ -18,12 +18,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # def edit
-  #   respond_to do |format|
-  #     format.js
-  #   end
-  # end
-
   def update
     @comment.update(comment_params)
     redirect_to blog_path(@comment.blog_id)

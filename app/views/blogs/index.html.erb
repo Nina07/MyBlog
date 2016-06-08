@@ -1,3 +1,6 @@
+<% if !current_user %>
+  <p><%= link_to 'Have an account? Login from here', login_path %></p>
+<% end %>
 <% @blogs.each do |blog| %>
   <div id="blog_body">
     <u><%= link_to "#{blog.title}", blog_path(blog) %></u>

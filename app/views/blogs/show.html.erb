@@ -1,24 +1,29 @@
-<legend><%= @blog.title %></legend>
-<p><%= sanitize @blog.body, tags: %w(b i u) %></p>
-<%= link_to 'Comments' ,"#", id: "comments-link" %><br>
-<section id="comments-section">
-  <div id="blog_comments">
-    <% @blog.comments.each do |comment| %>
-      <div class="well">
-        <div id="edit_comment">
-          <p><%= comment.data %>
-        </div>
-        <% if session[:user_id] %>
-          <div id="comment_links">
-            <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
-            <%= link_to 'Delete', blog_comment_path(@blog,comment), 
-              method: :delete , data: { confirm: 'Are you sure?'} %></p>
+<div class="blog-show">
+  <legend><%= @blog.title %></legend>
+  <p><%= sanitize @blog.body, tags: %w(b i u) %></p>
+  <% if blog_owner? %>
+    <p><%= link_to 'Edit Blog', edit_blog_path(@blog) %></p>
+  <% end %>
+  <%= link_to 'Comments' ,"#", id: "comments-link" %><br>
+  <section id="comments-section">
+    <div id="blog_comments">
+      <% @blog.comments.each do |comment| %>
+        <div class="well">
+          <div id="edit_comment">
+            <p><%= comment.data %></p>
           </div>
-        <% end %>
+          <% if blog_owner? %>
+            <div class="comment_links">
+              <p><%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %></p>
+              <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="comment_edit_form">
+        <%= render partial: '/comments/form' %>
       </div>
-    <% end %>
-<%= render partial: '/comments/form' %>
-  </div>
-</section>
-
+    </div>
+  </section>
+</div>
 

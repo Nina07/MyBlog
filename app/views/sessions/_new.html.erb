@@ -1,0 +1,28 @@
+<center>
+<div class="container">
+  <div class="jumbotron">
+    <h3><u>MyBlog, your one stop tech point!</u></h3>
+    <% flash.each do |k,v| %>
+      <div class="alert alert-danger">
+        <%= v %>
+      </div>
+    <% end %>
+
+    <%= form_tag do %>
+      <p>Sign IN</p>
+      <%= label_tag :email, "Email" %>
+      <%= text_field_tag :email, params[:email] %>
+      <br><br>
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password, params[:password] %>
+      <br><br>
+        <%= submit_tag 'Login' , id: "button" %><br><br>
+      <%= link_to 'New User? Sign Up here', new_user_path %>
+    <% end %>
+    <br>
+    <%= link_to 'Check out User Blogs', blogs_path %>
+    <br>
+  </div>
+</div>
+</center>
+

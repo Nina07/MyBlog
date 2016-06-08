@@ -1,5 +1,6 @@
 <%= form_for [@blog,@comment], url: blog_comment_path(@blog,@comment) do |f| %>
   <%= f.label :comment %>
-  <%= f.text_area :data %>
-  <center><%= f.submit 'Post' %></center>
+  <%= f.text_area :data %><br>
+  <%= f.submit 'Post' %>
 <% end %>
+<%= link_to 'Back', blog_path(@blog), class: "back_to_blog" %>
