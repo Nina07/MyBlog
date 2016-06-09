@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def full_name
     f_name.capitalize + ' ' + l_name.capitalize
   end
+
+  def blog_owner?(current_user)
+    id == current_user.id
+  end
 end

@@ -7,15 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @blog.comments.new(comment_params)
-    if @comment.save
-      # respond_to do |format|
-      #   format.html { redirect_to @blog }
-      #   format.js # will render create.js.erb
-      # end
-    else
-      render text: 'Try again'
-    end
+    @comment = @blog.comments.new(comment_params.merge(user_id: @blog.user_id))
+    @comment.save
   end
 
   def update

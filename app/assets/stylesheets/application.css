@@ -17,35 +17,4 @@
  *= require froala_style.min.css
  *= require font-awesome
  */
-h1 {
-    color: orange;
-    text-align: center;
-}
 
-h2,h3 {
-    text-align: center ; 
-}
-
-p {
-    font-family: "Times New Roman";
-    font-size: 20px;
-    text-align: center;
-}
-button{
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-a{
-    font-size: 20px;
-}
-legend{
-    font-family: "Times New Roman";
-    font-size: 20px;
-}
-.field_with_errors {
-    display: inline;
-}
-textarea {
-    display: inline-block;
-    width: 150px;
-}

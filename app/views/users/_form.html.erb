@@ -1,37 +1,36 @@
-<center>
-  <%= form_for @user do |f| %>
+<%= form_for @user do |f| %>
     <% if @user.errors.any? %>
-      <h4><center><%= pluralize(@user.errors.count,"error") %> prohibited this record from being saved.<center></h4>
+      <p><%= pluralize(@user.errors.count,"error") %> prohibited this record from being saved.</p>
     <% end %>
     <% @user.errors.full_messages.each do |msg| %>
       <%= msg %><br>
     <% end %>
     <%= f.label :first_name %>
-    <%= f.text_field :f_name %><br>
+    <%= f.text_field :f_name %>
 
     <%= f.label :last_name %>
-    <%= f.text_field :l_name %><br>
+    <%= f.text_field :l_name %>
 
     <%= f.label :email %>
-    <%= f.email_field :email %><br>
+    <%= f.email_field :email %>
 
     <%= f.label :password %>
-    <%= f.password_field :password, value: @user.password %><br>
+    <%= f.password_field :password, value: @user.password %>
 
     <%= f.label :confirm_password %>
-    <%= f.password_field :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
 
     <%= f.label :phone %>
-    <%= f.text_field :phone %><br>
-    
+    <%= f.text_field :phone %>
+
     <%= f.label :address %>
-    <%= f.text_area :address %><br>
+    <%= f.text_area :address %>
 
     <%= f.label :about_user %>
-    <%= f.text_area :about_user %><br>
+    <%= f.text_area :about_user %>
     <br>
-    <div id="button">
+    <div class="button">
         <%= f.submit %>
     </div>
-  <% end %>
-</center>
+<% end %>
+

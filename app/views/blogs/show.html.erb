@@ -1,7 +1,7 @@
 <div class="blog-show">
   <legend><%= @blog.title %></legend>
   <p><%= sanitize @blog.body, tags: %w(b i u) %></p>
-  <% if blog_owner? %>
+  <% if current_user && @blog.user.blog_owner?(current_user) %>
     <p><%= link_to 'Edit Blog', edit_blog_path(@blog) %></p>
   <% end %>
   <%= link_to 'Comments' ,"#", id: "comments-link" %><br>
@@ -12,7 +12,7 @@
           <div id="edit_comment">
             <p><%= comment.data %></p>
           </div>
-          <% if blog_owner? %>
+          <% if current_user && @blog.user.blog_owner?(current_user) %>
             <div class="comment_links">
               <p><%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %></p>
               <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
@@ -20,9 +20,7 @@
           <% end %>
         </div>
       <% end %>
-      <div class="comment_edit_form">
-        <%= render partial: '/comments/form' %>
-      </div>
+      <%= render partial: '/comments/form' %>
     </div>
   </section>
 </div>

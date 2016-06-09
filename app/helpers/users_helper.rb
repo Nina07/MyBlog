@@ -10,7 +10,9 @@ module UsersHelper
       flash[:notice] = "Please login first !!"
       respond_to do |format|
         format.html { redirect_to login_path }
-        format.js { render 'sessions/new' }
+        format.js do 
+          render js: "window.location = '#{login_url}'"
+        end
       end
     end
   end

@@ -1,7 +1,6 @@
 class BlogsController < ApplicationController
   before_action :find_blog, only: [:show, :destroy, :update, :edit]
   before_action :authenticate_user , except: [:index, :show, :about_us]
-  layout 'blog'
   def index
     @blogs = Blog.all
   end

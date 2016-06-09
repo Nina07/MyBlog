@@ -1,5 +1,5 @@
 <%= form_for [@blog, @blog.comments.build], url: blog_comments_path(@blog), remote: true do |f| %>
   <%= f.label :comment %>
   <%= f.text_area :data, placeholder: 'Write your comment...' %>
-  <%= f.submit 'Post' %>
+  <%= f.submit 'Post', class: "submit_button" %>
 <% end %>

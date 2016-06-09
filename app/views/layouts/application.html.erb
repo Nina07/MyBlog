@@ -2,15 +2,30 @@
 <html>
 <head>
   <title>MyBlog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'bootstrap_and_overrides', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
 </head>
 <body bgcolor="#d0e4fe">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fixed">
+      <ul class="nav navbar-nav">
+      <% if current_user %>
+      <li class="<%= 'active' if controller_name == 'users' %>"><%= link_to 'My Profile', user_path(@user.id)%> </li>
+      <% end %>
+      <li class="<%= 'active' if controller_name == 'blogs' %>"><%= link_to 'User Blogs', blogs_path %> </li>
+      <li class="<%= 'active' if controller_name == 'blogs' %>"><%= link_to 'About Us', about_us_blogs_path %></li>
+      <br>
+      </ul>
+  </nav>
   <%= yield %>
 </body>
 </html>
-
+<script>
+  $(function() {
+    $('#myEditor').froalaEditor({toolbarInline: false})
+  });
+</script>
 
 
