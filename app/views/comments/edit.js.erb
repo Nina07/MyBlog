@@ -1,5 +1,5 @@
-$('#edit_comment').html("<%= j render 'edit' %>");
-$('.comment_links').hide().after('');
+$('<%= "#edit-comment-#{@comment.id}" %>').html("<%= j render 'edit' %>");
+$('<%= ".comment-links-#{@comment.id}" %>').hide().after('');
 $('.new_comment').hide().after();
 $('#back_to_blog').show().after();
 $('#comment_data').focus();
