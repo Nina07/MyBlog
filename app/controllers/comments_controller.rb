@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to blogs_path
+    redirect_to blog_path(@comment.blog_id)
   end
 
   private

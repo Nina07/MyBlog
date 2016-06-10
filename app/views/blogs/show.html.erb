@@ -2,26 +2,26 @@
   <legend><%= @blog.title %></legend>
   <p><%= sanitize @blog.body, tags: %w(b i u) %></p>
   <% if current_user && @blog.user.blog_owner?(current_user) %>
-    <p><%= link_to 'Edit Blog', edit_blog_path(@blog) %></p>
+    <%= link_to 'Edit Blog', edit_blog_path(@blog) %><br><br>
   <% end %>
   <%= link_to 'Comments' ,"#", id: "comments-link" %><br>
   <section id="comments-section">
-    <div id="blog_comments">
+    <div id="blog-comments">
       <% @blog.comments.each do |comment| %>
         <div class="well">
           <div id=<%= "edit-comment-#{comment.id}" %>>
             <p><%= comment.data %></p>
           </div>
           <% if current_user && @blog.user.blog_owner?(current_user) %>
-            <div class=<%= "comment-links-#{comment.id}" %>
+            <div class=<%= "comment-links-#{comment.id}" %>>
               <p><%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %></p>
               <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
             </div>
           <% end %>
         </div>
-      <% end %>
-      <%= render partial: '/comments/form' %>
+      <% end %>      
     </div>
+    <%= render partial: '/comments/form' %>
   </section>
 </div>
 

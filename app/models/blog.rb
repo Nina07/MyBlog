@@ -3,9 +3,4 @@ class Blog < ActiveRecord::Base
   validates :title, :category, :body, presence: true
   has_many :comments, dependent: :destroy
 
-  before_save :remove_enclosing_tags
-
-  def remove_enclosing_tags
-    body.delete!("<p></p><center></center>")
-  end
 end

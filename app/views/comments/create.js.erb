@@ -1,2 +1,2 @@
-$('#blog_comments').append("<%= j @comment.data %>");
+$('#blog-comments').append('<div class=well><%= j @comment.data %><br><%= link_to 'Edit', edit_blog_comment_path(@blog,@comment), remote: true %><br><%= link_to 'Delete', blog_comment_path(@blog,@comment), method: :delete , data: { confirm: 'Are you sure?'}%></div>'); 
 $('#comment_data').val("");

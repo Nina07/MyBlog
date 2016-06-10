@@ -2,7 +2,6 @@
   <% if @blog.errors.any? %>
     <p><%= pluralize(@blog.errors.count,"error") %> prohibited this blog from being saved !</p>
   <% end %>
-  <% #use N+1 query logic here %>
     <% @blog.errors.full_messages.each do |msg| %>
       <strong><%= msg %></strong><br>
     <% end %>

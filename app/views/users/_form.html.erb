@@ -3,7 +3,9 @@
       <p><%= pluralize(@user.errors.count,"error") %> prohibited this record from being saved.</p>
     <% end %>
     <% @user.errors.full_messages.each do |msg| %>
-      <%= msg %><br>
+    <ul>
+      <li><%= msg %><br></li>
+    </ul>
     <% end %>
     <%= f.label :first_name %>
     <%= f.text_field :f_name %>

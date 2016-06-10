@@ -1,6 +1,7 @@
 <% if !current_user %>
   <%= link_to 'Have an account? Login from here', login_path %>
-<% end %>
+<% end %><br>
+<%= link_to "Write a Blog!", new_blog_path %><br><br>
 <% @blogs.each do |blog| %>
   <div id="blog_body">
   <div class="panel panel-info">

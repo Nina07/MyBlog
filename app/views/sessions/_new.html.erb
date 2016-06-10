@@ -9,11 +9,9 @@
 
     <%= form_tag do %>
       <p>Sign In</p>
-      <%= label_tag :email, "Email" %>
-      <%= text_field_tag :email, params[:email] %>
+      <%= text_field_tag :email, params[:email], placeholder: "Enter your Email ID" %>
       <br><br>
-      <%= label_tag :password, "Password" %>
-      <%= password_field_tag :password, params[:password] %>
+      <%= password_field_tag :password, params[:password], placeholder: "Enter your Password" %>
       <br><br>
         <%= submit_tag 'Login' , id: "button" %><br><br>
       <%= link_to 'New User? Sign Up here', new_user_path %>

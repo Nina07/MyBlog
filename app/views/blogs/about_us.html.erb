@@ -1,6 +1,9 @@
+<% if !current_user %>
+  <%= link_to 'Have an account? Login from here', login_path %>
+<% end %><br><br>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Why you should be an active Blogger?
+    Why should you be an active Blogger
   </div>
   <div class="panel-body">
     <b>Blogging is challenging, and challenges are good</b>
