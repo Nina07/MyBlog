@@ -12,11 +12,13 @@
           <div id=<%= "edit-comment-#{comment.id}" %>>
             <p><%= comment.data %></p>
           </div>
-          <% if current_user && @blog.user.blog_owner?(current_user) %>
+          <% if current_user && comment.comment_owner?(current_user) %>
             <div class=<%= "comment-links-#{comment.id}" %>>
               <p><%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %></p>
-              <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
             </div>
+            <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
+            <% elsif current_user && comment.user.blog_owner?(current_user) %>
+              <p><%= link_to 'Delete', blog_comment_path(@blog,comment),    method: :delete , data: { confirm: 'Are you sure?'} %></p>
           <% end %>
         </div>
       <% end %>      

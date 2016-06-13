@@ -28,7 +28,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user)
   end
 
   private

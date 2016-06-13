@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @blog.comments.new(comment_params.merge(user_id: @blog.user_id))
+    @comment = @blog.comments.new(comment_params.merge(user_id: current_user.id))
     @comment.save
   end
 
