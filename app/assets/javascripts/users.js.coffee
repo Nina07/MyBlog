@@ -27,5 +27,5 @@ $.rails.showConfirmDialog = (link) ->
            </div>
          </div>
          """
-  $(html).modal()
-  $('#confirmationDialog .confirm').on 'click', -> $.rails.confirmed(link)
+$(html).modal()
+$('#confirmationDialog .confirm').on 'click', -> $.rails.confirmed(link)

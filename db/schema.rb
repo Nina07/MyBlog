@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525133933) do
+ActiveRecord::Schema.define(version: 20160614113043) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "type",       limit: 255
+    t.boolean  "approved"
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -42,11 +52,13 @@ ActiveRecord::Schema.define(version: 20160525133933) do
     t.string   "email",      limit: 255
     t.string   "phone",      limit: 255
     t.text     "about_user", limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "password",   limit: 255,   null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "password",   limit: 255,                    null: false
+    t.string   "role",       limit: 255,   default: "user"
   end
 
+  add_foreign_key "activities", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"

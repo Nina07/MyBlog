@@ -1,0 +1,23 @@
+<legend>Hey <%= current_user.f_name %></legend>
+<%= link_to 'Moderators', "#", id: "moderators-link" %>
+<%#= button_to "Show Activities", activities_path, method: :get %>
+<% @moderators.each do |mod| %>
+  <div class="moderators-section">
+    <div class="well">
+      <p>Name: <%= mod.full_name %></p>
+      <p>Joined MyBlog on: <%= mod.created_at.to_date %></p>
+      <%= button_to "Make User", change_role_user_path(mod), params: { role: 'user'} , method: :patch, action: 'change_role' %><br>
+    </div>
+  </div>
+<% end %>
+<br>
+<%= link_to 'Users', "#", id: "users-link" %>
+<% @regular_users.each do |user| %>
+  <div class="regular-users-section">
+    <div class="well">
+      <p>Name: <%= user.full_name %></p>
+      <p>Joined MyBlog on: <%= user.created_at.to_date %></p>
+      <%= button_to "Make Moderator", change_role_user_path(user), params: { role: 'Moderator'} , method: :patch, action: 'change_role' %>
+    </div>  
+  </div>
+<% end %>

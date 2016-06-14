@@ -1,0 +1,13 @@
+<% current_user.blogs.each do |blog| %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <%= link_to "#{blog.title}", blog_path(blog) %>&nbsp
+      <%= '~ ' + blog.user.full_name %>&nbsp&nbsp
+      <% if blog.user_id == current_user.id %>
+        <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <p><%= sanitize (blog.body).slice(0..120) + '..........', tags: %w(b i u) %> <%=link_to 'Read More', blog_path(blog) %><br></p>
+    </div>
+<% end %>

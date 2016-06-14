@@ -20,8 +20,11 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fixed">
       <ul class="nav navbar-nav">
-      <% if current_user %>
-      <li class="<%= 'active' if controller_name == 'users' %>"><%= link_to 'My Profile', user_path(current_user)%> </li>
+      <% if (current_user && current_user.role.include?('Admin')) %>
+        <li class="<%= 'active' if controller_name == 'users' %>"><%= link_to 'My Profile', user_path(current_user)%> </li>
+        <li class="<%= 'active' if controller_name == 'users' %>"><%= link_to 'Blog Users', users_path %></li>
+      <% elsif current_user %>
+        <li class="<%= 'active' if controller_name == 'users' %>"><%= link_to 'My Profile', user_path(current_user)%> </li>
       <% end %>
       <li class="<%= 'active' if controller_name == 'blogs' %>"><%= link_to 'User Blogs', blogs_path %> </li>
       <li class="<%= 'active' if controller_name == 'blogs' %>"><%= link_to 'About Us', about_us_blogs_path %></li>

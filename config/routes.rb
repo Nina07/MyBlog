@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :users, except: :index
+  resources :users do
+    patch :change_role, on: :member
+  end
 
   resources :blogs do
     collection do
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
     end
     resources :comments, except: [:index,:show]
   end
-
  # resources :sessions, except: [:edit, :update, :index]
   controller :sessions do
     get 'login' => :new

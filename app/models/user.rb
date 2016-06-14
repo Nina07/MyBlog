@@ -9,12 +9,9 @@ class User < ActiveRecord::Base
 
   has_many :blogs, dependent: :destroy
   has_many :comments, through: :blogs
+  has_many :activities, dependent: :destroy
 
   def full_name
     f_name.capitalize + ' ' + l_name.capitalize
-  end
-
-  def blog_owner?(current_user)
-    id == current_user.id
   end
 end

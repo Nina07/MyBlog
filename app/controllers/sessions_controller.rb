@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email], password: params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to user_path(user.id)
+      redirect_to blogs_path
     else
       flash.now[:alert] = "Invalid user/password combination"
       render 'new'

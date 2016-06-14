@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   before_action :find_blog, only: [:show, :destroy, :update, :edit]
   before_action :authenticate_user , except: [:index, :show, :about_us]
   def index
-    @blogs = Blog.all
+    @blogs = Blog.order(updated_at: 'desc')
   end
 
   def new
@@ -19,10 +19,10 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if @blog.update(blog_params)
+    if (@blog.blog_owner?(current_user) || current_user.role == "Admin")
+      @blog.update(blog_params)
       redirect_to @blog
     else
-      render 'edit'
     end
   end
 

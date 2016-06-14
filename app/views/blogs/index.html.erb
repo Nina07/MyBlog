@@ -1,19 +1,8 @@
-<% if !current_user %>
-  <%= link_to 'Have an account? Login from here', login_path %>
-<% end %><br>
 <%= link_to "Write a Blog!", new_blog_path %><br><br>
-<% @blogs.each do |blog| %>
-  <div id="blog_body">
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <u><%= link_to "#{blog.title}", blog_path(blog) %></u>&nbsp&nbsp
-    <% if session[:user_id] && blog.user_id == current_user.id %>
-      <%= link_to 'Edit Blog', edit_blog_path(blog) %>
-    <% end %>
-    </div>
-    <div class="panel-body">
-    <p><%= sanitize (blog.body).slice(0..120) + '..........', tags: %w(b i u) %> <%=link_to 'Read More', blog_path(blog) %><br></p>
-    </div>
-  </div>
-  </div>
+<% if !current_user %>
+  <%= link_to 'Have an account? Login from here', login_path %><br>
+<% elsif current_user && ( current_user.role == "Admin" || current_user.role == "Moderator" ) %>
+  <%= render 'admin_mod_index' %>
+<% else %>
+  <%= render 'user_blog_index' %>
 <% end %>

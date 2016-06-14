@@ -1,0 +1,14 @@
+<% @blogs.each do |blog| %>
+  <div id="blog_body">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <u><%= link_to "#{blog.title}", blog_path(blog) %></u>&nbsp
+        <%= '~ ' + blog.user.full_name %>&nbsp&nbsp
+        <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+      </div>
+      <div class="panel-body">
+      <p><%= sanitize (blog.body).slice(0..120) + '..........', tags: %w(b i u) %> <%=link_to 'Read More', blog_path(blog) %><br></p>
+      </div>
+    </div>
+  </div>
+<% end %>
