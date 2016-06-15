@@ -1,6 +1,6 @@
 <legend>Hey <%= current_user.f_name %></legend>
 <%= link_to 'Moderators', "#", id: "moderators-link" %>
-<%#= button_to "Show Activities", activities_path, method: :get %>
+<%= button_to "Show Activities", activities_path, method: :get %>
 <% @moderators.each do |mod| %>
   <div class="moderators-section">
     <div class="well">

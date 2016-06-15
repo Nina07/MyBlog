@@ -1,0 +1,15 @@
+<p>Moderator Activities</p>
+<% @users.each do |user| %>
+  <%= link_to "#{user.full_name}", "#", id: "moderator-activity-#{user.id}" %>
+    <% user.activities.each do |user_activity| %>
+      <div class=<%="activities-#{user.id}"%>>
+        <div class="well">
+          <p>Activity Type: <%= user_activity.activity_type.act_type.camelize.split('.').join(",") %></p>
+          <p>Post: <%= user_activity.post_id %></p>
+          <p>Activity Date: <%= user_activity.created_at.to_date %></p>
+          <p>Approved Status: <%= user_activity.approved %></p>
+          <%= button_to "Approve", activity_path(user_activity), params: { approved: true } ,method: :patch %>
+        </div>
+      </div>
+    <% end %><br>
+<% end %>

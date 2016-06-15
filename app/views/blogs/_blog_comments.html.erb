@@ -1,5 +1,5 @@
 <% @blog.comments.each do |comment| %>
-  <div class="well">
+  <div class="well", id: "<%= "well-#{comment.id}"%>">
     <div id=<%= "edit-comment-#{comment.id}" %>>
       <p><%= comment.data %></p>
     </div>
@@ -10,7 +10,7 @@
         </p>
       </div>
       <p>
-        <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} %>
+        <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} , id: "comment-#{comment.id}" %>
       </p>
     <% elsif current_user && comment.blog.blog_owner?(current_user) %>
       <p>

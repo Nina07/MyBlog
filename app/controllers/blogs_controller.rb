@@ -1,6 +1,8 @@
 class BlogsController < ApplicationController
   before_action :find_blog, only: [:show, :destroy, :update, :edit]
   before_action :authenticate_user , except: [:index, :show, :about_us]
+  include UserActivity
+
   def index
     @blogs = Blog.order(updated_at: 'desc')
   end
@@ -19,16 +21,26 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if (@blog.blog_owner?(current_user) || current_user.role == "Admin")
+    if user_authorized?
       @blog.update(blog_params)
       redirect_to @blog
     else
+      activity_type = params[:controller] + '.' + params[:action]
+      byebug
+      create_activity(current_user.id,activity_type,@blog.id)
+      redirect_to @blog
     end
   end
 
   def destroy
-    @blog.destroy
-    redirect_to user_path(current_user)
+    if user_authorized?
+      @blog.destroy
+      redirect_to user_path(current_user)
+    else
+      activity_type = params[:controller] + '.' + params[:action]
+      create_activity(current_user.id,activity_type,@blog.id)
+      redirect_to blogs_path
+    end
   end
 
   private
@@ -38,5 +50,9 @@ class BlogsController < ApplicationController
 
   def find_blog
     @blog = Blog.find(params[:id])
+  end
+
+  def user_authorized?
+    current_user.role.include?('Admin') || @blog.blog_owner?(current_user)
   end
 end

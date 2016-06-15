@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_action :find_blog, :current_user
   before_action :find_comment, only: [:edit, :update, :destroy]
   before_action :authenticate_user
+  include UserActivity
+
   def new
     @comment = Comment.new
   end
@@ -12,16 +14,32 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update(comment_params)
-    redirect_to blog_path(@comment.blog_id)
+    if user_authorized?
+      @comment.update(comment_params)
+      redirect_to blog_path(@comment.blog_id)
+    else
+      act_type = params[:controller] + '.' + params[:action]
+      create_activity(current_user.id,act_type,@comment.id)
+      redirect_to blog_path(@comment.blog)
+    end
   end
 
   def destroy
-    @comment.destroy
-    redirect_to blog_path(@comment.blog_id)
+    if user_authorized?
+      @comment.destroy
+      redirect_to blog_path(@comment.blog_id)
+    else
+      act_type = params[:controller] + '.' + params[:action]
+      create_activity(current_user.id,act_type,@comment.id)
+      redirect_to blog_path(@comment.blog)
+    end
   end
 
   private
+  def comment_params
+    params.require(:comment).permit(:user_id,:blog_id,:data)
+  end
+
   def find_blog
     @blog = Blog.find(params[:blog_id])    
   end
@@ -30,7 +48,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def comment_params
-    params.require(:comment).permit(:user_id,:blog_id,:data)
+  def user_authorized?
+    current_user.role.include?('Admin') || @comment.comment_owner?(current_user)
   end
 end

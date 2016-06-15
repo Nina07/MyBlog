@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :users do
     patch :change_role, on: :member
   end
-
   resources :blogs do
     collection do
       get 'about_us'
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+  resources :activities
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

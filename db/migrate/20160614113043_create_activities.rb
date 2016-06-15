@@ -4,7 +4,6 @@ class CreateActivities < ActiveRecord::Migration
       t.string :type
       t.boolean :approved
       t.references :user, index: true, foreign_key: true
-
       t.timestamps null: false
     end
   end

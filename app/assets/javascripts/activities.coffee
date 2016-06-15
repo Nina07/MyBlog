@@ -2,8 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "page:change", ->
-  $('#comments-link').click ->
-    $('#comments-section').fadeToggle()
-    $('#comment_data').focus()
-
-
+  $('<%= #moderator-activity-"#{@user.id}" %>').click (event) ->
+    event.preventDefault()
+    $('<%= .activities-"#{@user.id}"').fadeToggle()

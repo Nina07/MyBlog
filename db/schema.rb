@@ -11,17 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614113043) do
+ActiveRecord::Schema.define(version: 20160615105129) do
 
   create_table "activities", force: :cascade do |t|
-    t.string   "type",       limit: 255
     t.boolean  "approved"
-    t.integer  "user_id",    limit: 4
+    t.integer  "user_id",          limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "activity_type_id", limit: 4
+    t.integer  "post_id",          limit: 4, null: false
+  end
+
+  add_index "activities", ["activity_type_id"], name: "index_activities_on_activity_type_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
+  create_table "activity_types", force: :cascade do |t|
+    t.string   "act_type",   limit: 255
+    t.boolean  "approved"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -58,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160614113043) do
     t.string   "role",       limit: 255,   default: "user"
   end
 
+  add_foreign_key "activities", "activity_types"
   add_foreign_key "activities", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "comments", "blogs"
