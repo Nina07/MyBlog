@@ -2,7 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready(function() { 
-  $('<%= #comment-"#{}" %>').click(function(event) {
-    $('<%= #well-"#{}" %>').hide()
+  $('#delete-comment').click(function() {
+    alert('clicked')
+    # $(this).hide()
   });
 });
+

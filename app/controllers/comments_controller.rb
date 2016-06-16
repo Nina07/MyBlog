@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :find_blog, :current_user
   before_action :find_comment, only: [:edit, :update, :destroy]
   before_action :authenticate_user
-  include UserActivity
+  # include UserActivity
 
   def new
     @comment = Comment.new
@@ -49,6 +49,6 @@ class CommentsController < ApplicationController
   end
 
   def user_authorized?
-    current_user.role.include?('Admin') || @comment.comment_owner?(current_user)
+    current_user.user_role.role == 0 || @comment.comment_owner?(current_user)
   end
 end

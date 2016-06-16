@@ -1,0 +1,4 @@
+<%= form_for(user, url: change_role_user_url(user), method: :patch, action: :change_role) do |f| %>
+  <%= f.select :role, [["Admin", 0], ["Moderator", 1], ["User", 2]] %>
+  <%= f.submit 'Change Role' %>
+<% end %>

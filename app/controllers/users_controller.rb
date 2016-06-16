@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :find_user, except: [ :index, :new, :create ]
+  before_action :find_user, except: [ :index, :new, :create , :change_role]
   before_action :authenticate_user
   skip_before_action :authenticate_user , only: [ :new,:create ]
   def index
-    @regular_users = User.where(role: 'user').order(updated_at: 'desc')
-    @moderators = User.where(role: 'Moderator').order(updated_at: 'desc')
+    @regular_users = User.where(user_role_id: 3).order(updated_at: 'desc')
+    @moderators = User.where(user_role_id: 2).order(updated_at: 'desc')
   end
 
   def new
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def change_role
     @change_user = User.find(params[:id])
-    @change_user.update(role: params[:role])
+    @change_user.update(user_role_id: params[:user][:user_role_id])
     redirect_to users_path
   end
 

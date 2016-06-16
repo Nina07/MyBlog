@@ -1,4 +1,4 @@
-<p>Moderator Activities</p>
+<h3>Moderator Activities</h3>
 <% @users.each do |user| %>
   <%= link_to "#{user.full_name}", "#", id: "moderator-activity-#{user.id}" %>
     <% user.activities.each do |user_activity| %>

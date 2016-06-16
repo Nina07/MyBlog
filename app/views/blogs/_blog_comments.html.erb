@@ -1,16 +1,18 @@
 <% @blog.comments.each do |comment| %>
-  <div class="well", id: "<%= "well-#{comment.id}"%>">
+  <div class="well", id="<%= "well-#{comment.id}"%>">
     <div id=<%= "edit-comment-#{comment.id}" %>>
       <p><%= comment.data %></p>
     </div>
-    <% if current_user && ( comment.comment_owner?(current_user) || ([current_user.role] & ['Admin', 'Moderator']).any? ) %>
+    <% if current_user && ( comment.comment_owner?(current_user) || current_user.user_role.role == 0 ) %>
       <div class=<%= "comment-links-#{comment.id}" %>>
+        <%= content_tag :div, class: "hide-comment", data: { current_comment: comment } do %>
+        <% end %>
         <p>
           <%= link_to 'Edit', edit_blog_comment_path(@blog,comment), remote: true %>
         </p>
       </div>
       <p>
-        <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} , id: "comment-#{comment.id}" %>
+        <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} , id: "delete-comment" %>
       </p>
     <% elsif current_user && comment.blog.blog_owner?(current_user) %>
       <p>

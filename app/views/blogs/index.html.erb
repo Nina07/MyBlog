@@ -1,7 +1,7 @@
 <%= link_to "Write a Blog!", new_blog_path %><br><br>
 <% if !current_user %>
   <%= link_to 'Have an account? Login from here', login_path %><br>
-<% elsif current_user && ( current_user.role == "Admin" || current_user.role == "Moderator" ) %>
+<% elsif current_user && ( current_user.user_role.role == 0 || current_user.user_role.role == 1 ) %>
   <%= render 'admin_mod_index' %>
 <% else %>
   <%= render 'user_blog_index' %>

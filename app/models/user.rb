@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :blogs, dependent: :destroy
   has_many :comments, through: :blogs
   has_many :activities, dependent: :destroy
+  belongs_to :user_role
 
   def full_name
     f_name.capitalize + ' ' + l_name.capitalize
