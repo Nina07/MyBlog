@@ -3,7 +3,7 @@
     <div id=<%= "edit-comment-#{comment.id}" %>>
       <p><%= comment.data %></p>
     </div>
-    <% if current_user && ( comment.comment_owner?(current_user) || current_user.user_role.role == 0 ) %>
+    <% if current_user && ( comment.comment_owner?(current_user) || current_user.user_role.role != 2 ) %>
       <div class=<%= "comment-links-#{comment.id}" %>>
         <%= content_tag :div, class: "hide-comment", data: { current_comment: comment } do %>
         <% end %>

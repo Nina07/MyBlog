@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :find_blog, :current_user
   before_action :find_comment, only: [:edit, :update, :destroy]
   before_action :authenticate_user
-  # include UserActivity
 
   def new
     @comment = Comment.new
@@ -16,23 +15,19 @@ class CommentsController < ApplicationController
   def update
     if user_authorized?
       @comment.update(comment_params)
-      redirect_to blog_path(@comment.blog_id)
     else
-      act_type = params[:controller] + '.' + params[:action]
-      create_activity(current_user.id,act_type,@comment.id)
-      redirect_to blog_path(@comment.blog)
+      @comment.create_update_activity(current_user)
     end
+    redirect_to blog_path(@comment.blog_id)
   end
 
   def destroy
     if user_authorized?
       @comment.destroy
-      redirect_to blog_path(@comment.blog_id)
     else
-      act_type = params[:controller] + '.' + params[:action]
-      create_activity(current_user.id,act_type,@comment.id)
-      redirect_to blog_path(@comment.blog)
+      @comment.create_destroy_activity(current_user)
     end
+    redirect_to blog_path(@comment.blog_id)
   end
 
   private

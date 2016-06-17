@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates_confirmation_of :password, message: "should match password."
 
+  belongs_to :user_role
   has_many :blogs, dependent: :destroy
   has_many :comments, through: :blogs
   has_many :activities, dependent: :destroy
-  belongs_to :user_role
 
   def full_name
     f_name.capitalize + ' ' + l_name.capitalize

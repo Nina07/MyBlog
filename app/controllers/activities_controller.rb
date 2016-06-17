@@ -12,4 +12,14 @@ class ActivitiesController < ApplicationController
 
   def create
   end
+
+  def update
+    @activity = Activity.find(params[:id])
+    if ( current_user && current_user.user_role.role == 0 )
+      @activity.update(approved: 1)
+    else
+      flash.now[:alert] = "You're not authorized to perform this action !"
+    end
+    redirect_to activities_path
+  end
 end

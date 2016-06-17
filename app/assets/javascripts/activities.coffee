@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "page:change", ->
-  $('<%= #moderator-activity-"#{@user.id}" %>').click (event) ->
-    event.preventDefault()
-    $('<%= .activities-"#{@user.id}"').fadeToggle()
+  $('#unapproved-activities').click ->
+    $('.unapproved-activities-section').fadeToggle()
+    
+  $('#approved-activities').click ->
+    $('.approved-activities-section').fadeToggle()
+
+  $('#moderator-activity').click ->
+    $('#activity-section').fadeToggle()

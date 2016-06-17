@@ -21,15 +21,12 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if user_authorized?
+    if user_authorized? && 
       @blog.update(blog_params)
-      redirect_to @blog
-    else
-    #   activity_type = params[:controller] + '.' + params[:action]
-    #   byebug
-    #   create_activity(current_user.id,activity_type,@blog.id)
-    #   redirect_to @blog
+    # else
+      @blog.create_update_activity(current_user)
     end
+    redirect_to @blog
   end
 
   def destroy
@@ -37,9 +34,8 @@ class BlogsController < ApplicationController
       @blog.destroy
       redirect_to user_path(current_user)
     else
-    #   activity_type = params[:controller] + '.' + params[:action]
-    #   create_activity(current_user.id,activity_type,@blog.id)
-    #   redirect_to blogs_path
+      @blog.create_destroy_activity(current_user)
+      redirect_to @blog
     end
   end
 
@@ -53,6 +49,7 @@ class BlogsController < ApplicationController
   end
 
   def user_authorized?
-    current_user.user_role.role == 0 || @blog.blog_owner?(current_user)
+    !current_user.user_role.role == 2
+    # not 'normal user' & not blog owner
   end
 end

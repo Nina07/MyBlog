@@ -4,7 +4,7 @@
 <ul><br>
 <%= link_to 'Moderators', "#", id: "moderators-link" %>
 <% @moderators.each do |mod| %>
-  <div class="moderators-section">
+  <div  class="moderators-section">
     <div class="well">
       <p>Name: <%= mod.full_name %></p>
       <p>Joined MyBlog on: <%= mod.created_at.to_date %></p>

@@ -5,8 +5,9 @@
   <p>
     <%= sanitize @blog.body, tags: %w(b i u) %>
   </p>
-  <% if current_user && (current_user.user_role.role == 0 || @blog.blog_owner?(current_user)) %>
-    <%= link_to 'Edit Blog', edit_blog_path(@blog) %><br><br>
+  <% if current_user && (current_user.user_role.role != 2  || @blog.blog_owner?(current_user)) %>
+    <%= link_to 'Edit Blog', edit_blog_path(@blog) %>
+    <%= link_to 'Delete Blog', blog_path(@blog), method: :delete, data: { confirm: "Are you sure?"} %><br><br>
   <% end %>
   <%= link_to 'Comments' ,"#", id: "comments-link" %><br>
 
