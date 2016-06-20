@@ -21,20 +21,21 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if user_authorized? && 
+    @blog.assign_attributes(blog_params)
+    if user_authorized?
       @blog.update(blog_params)
-    # else
-      @blog.create_update_activity(current_user)
+    else
+      @blog.create_update_activity(current_user,@blog.changes)
     end
     redirect_to @blog
   end
 
   def destroy
     if user_authorized?
-      @blog.destroy
-      redirect_to user_path(current_user)
+      @blog.destroy(blog_params)
+      redirect_to blogs_path
     else
-      @blog.create_destroy_activity(current_user)
+      @blog.create_update_activity(current_user,@blog.changes)
       redirect_to @blog
     end
   end
@@ -48,8 +49,13 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
 
-  def user_authorized?
-    !current_user.user_role.role == 2
-    # not 'normal user' & not blog owner
+  def user_authorized? #checks that he should'nt be a normal user or blog owner
+    if current_user.user_role.role == 2
+      true if current_user.blog_owner?(current_user)
+    elsif current_user.user_role.role == 1
+      false
+    else
+      true
+    end
   end
 end

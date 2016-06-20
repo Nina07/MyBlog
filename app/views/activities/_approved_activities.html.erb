@@ -1,5 +1,6 @@
 <% @users.each do |user| %>
-  <%= link_to "#{user.full_name}", "#", id: "moderator-activity" %>
+  <%= link_to "#{user.full_name}", "#", id: "app-moderator-activity" %><br>
+  <section id="app-mod-act-section">
     <% user.activities.where(approved: 1).each do |user_activity| %>
       <div id="activity-section"%>
         <div class="well">
@@ -8,8 +9,8 @@
           <p>Element ID: <%= user_activity.user_activity_id %></p>
           <p>Activity Date: <%= user_activity.created_at.to_date %></p>
           <p>Approved Status: <%= user_activity.approved %></p>
-          <%= button_to "Approve", activity_path(user_activity), params: { approved: true } ,method: :patch %>
         </div>
       </div>
     <% end %><br><br>
+  </section>
 <% end %>

@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
-  <%= link_to "#{user.full_name}", "#", id: "moderator-activity-#{user.id}" %>
-    <section id="mod-act-section">
+  <%= link_to "#{user.full_name}", "#", id: "unapp-moderator-activity" %><br>
+    <section id="unapp-mod-act-section">
     <% user.activities.where(approved: 0).each do |user_activity| %>
       <div class=<%="activities-#{user.id}"%>>
         <div class="well">
@@ -14,4 +14,4 @@
       </div>
     <% end %><br>
     </section>
-<% end %>
+<% end %> 

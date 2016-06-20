@@ -8,5 +8,9 @@ $(document).on "page:change", ->
   $('#approved-activities').click ->
     $('.approved-activities-section').fadeToggle()
 
-  $('#moderator-activity').click ->
-    $('#activity-section').fadeToggle()
+  $('#unapp-moderator-activity').click ->
+    $('#unapp-mod-act-section').fadeToggle()
+
+  $('#app-moderator-activity').click (event) ->
+    event.preventDefault()
+    $('#app-mod-act-section').fadeToggle()
