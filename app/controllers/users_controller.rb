@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user
   skip_before_action :authenticate_user , only: [ :new,:create ]
   def index
-    @regular_users = User.where(user_role_id: 3).order(updated_at: 'desc')
-    @moderators = User.where(user_role_id: 2).order(updated_at: 'desc')
+    @regular_users = User.where(user_role_id: 3)
+    @moderators = User.where(user_role_id: 2)
   end
 
   def new
@@ -37,18 +37,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def change_role
-    @change_user = User.find(params[:id])
-    @change_user.update(user_role_id: params[:user][:user_role_id])
-    redirect_to users_path
-  end
-
   private
   def find_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:f_name,:l_name,:password,:password_confirmation,:address,:email,:phone,:about_user,:role)
+    params.require(:user).permit(:f_name,:l_name,:password,:password_confirmation,:address,:email, :phone, :about_user, :user_role_id)
   end
 end

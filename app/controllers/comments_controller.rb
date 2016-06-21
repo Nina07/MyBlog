@@ -44,13 +44,14 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def user_authorized? #checks that he should'nt normal user or a comment owner
-    if current_user.user_role.role == 2
-      return true if current_user.comment_owner?(current_user)
-    elsif current_user.user_role.role == 1
-      return false
-    else
-      true
-    end
+  def user_authorized? #checks that he should'nt be a normal user or blog owner
+    current_user.comment_owner?(current_user) || current_user.is_admin?
+  end
+
+  def authorize!
+    unless user_authorized?
+      flash[:alert] = 'Aunauthorized'
+      redirect_to :back
+     end
   end
 end

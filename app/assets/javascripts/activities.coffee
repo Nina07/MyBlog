@@ -5,11 +5,11 @@ $(document).on "page:change", ->
   $('#unapproved-activities').click ->
     $('.unapproved-activities-section').fadeToggle()
     
-  $('#approved-activities').click ->
-    $('.approved-activities-section').fadeToggle()
-
   $('#unapp-moderator-activity').click ->
     $('#unapp-mod-act-section').fadeToggle()
+
+  $('#approved-activities').click ->
+    $('.approved-activities-section').fadeToggle()
 
   $('#app-moderator-activity').click (event) ->
     event.preventDefault()

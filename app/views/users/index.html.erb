@@ -8,11 +8,11 @@
     <div class="well">
       <p>Name: <%= mod.full_name %></p>
       <p>Joined MyBlog on: <%= mod.created_at.to_date %></p>
-      <%#= render 'change_user_role', locals: { user: mod } %>
-      <%= form_for(mod, url: change_role_user_url(mod), method: :patch, action: :change_role) do |f| %>
-        <%= f.select :user_role_id, [["Admin", 1], ["Moderator", 2], ["User", 3]] %><br><br>
-        <%= f.submit 'Change Role' %>
-      <% end %>
+      <%= render 'change_user_role', user: mod %>
+      <%#= form_for(mod) do |f| %>
+        <%#= f.select :user_role_id, [["Admin", 1], ["Moderator", 2], ["User", 3]] %><br><br>
+        <%#= f.submit 'Change Role' %>
+      <%# end %>
       <%#= button_to "Change Role", change_role_user_path(mod), params: { role: 'user'} , method: :patch, action: 'change_role' %>
     </div>
   </div>
@@ -24,10 +24,7 @@
     <div class="well">
       <p>Name: <%= user.full_name %></p>
       <p>Joined MyBlog on: <%= user.created_at.to_date %></p>
-      <%= form_for(user, url: change_role_user_url(user), method: :patch, action: :change_role) do |f| %>
-        <%= f.select :user_role_id, [["Admin", 1], ["Moderator", 2], ["User", 3]] %><br><br>
-        <%= f.submit 'Change Role' %>
-      <% end %>
+      <%= render 'change_user_role', user: user %>
       <%#= button_to "Make Moderator", change_role_user_path(user), params: { role: 'Moderator'} , method: :patch, action: 'change_role' %>
     </div>  
   </div>

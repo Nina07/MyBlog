@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
   before_action :find_blog, only: [:show, :destroy, :update, :edit]
-  before_action :authenticate_user , except: [:index, :show, :about_us]
-  # include UserActivity
-
+  before_action :authenticate_user!, except: [:index, :show, :about_us]
+  # before_action :authenticate_user , except: [:index, :show, :about_us]
+  before_action :authorize!, only: [:update, :destroy]
   def index
     @blogs = Blog.order(updated_at: 'desc')
   end
@@ -22,10 +22,10 @@ class BlogsController < ApplicationController
 
   def update
     @blog.assign_attributes(blog_params)
-    if user_authorized?
+    if current_user.is_moderator?
+      @blog.create_update_activity(current_user)
+    elsif user_authorized? #check twice
       @blog.update(blog_params)
-    else
-      @blog.create_update_activity(current_user,@blog.changes)
     end
     redirect_to @blog
   end
@@ -50,12 +50,13 @@ class BlogsController < ApplicationController
   end
 
   def user_authorized? #checks that he should'nt be a normal user or blog owner
-    if current_user.user_role.role == 2
-      true if current_user.blog_owner?(current_user)
-    elsif current_user.user_role.role == 1
-      false
-    else
-      true
-    end
+    current_user.blog_owner?(current_user) || current_user.is_admin?
+  end
+
+  def authorize!#checks current_user, if normal wouldn't let further processing happen.
+    unless user_authorized?
+      flash[:alert] = 'Aunauthorized'
+      redirect_to :back
+     end
   end
 end

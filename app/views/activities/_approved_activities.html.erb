@@ -1,16 +1,20 @@
-<% @users.each do |user| %>
-  <%= link_to "#{user.full_name}", "#", id: "app-moderator-activity" %><br>
-  <section id="app-mod-act-section">
-    <% user.activities.where(approved: 1).each do |user_activity| %>
-      <div id="activity-section"%>
-        <div class="well">
-          <p>Activity performed on: <%= user_activity.activity_name.capitalize %></p>
-          <p>Activity Type: <%= user_activity.user_activity_type.capitalize %></p>
-          <p>Element ID: <%= user_activity.user_activity_id %></p>
-          <p>Activity Date: <%= user_activity.created_at.to_date %></p>
-          <p>Approved Status: <%= user_activity.approved %></p>
-        </div>
-      </div>
-    <% end %><br><br>
-  </section>
+<div class="panel panel-info">
+<% @user_activities.where(approved: 1).each do |activity| %>
+  <div class="panel-heading">
+    <%= link_to "#{activity.user.full_name}", "#", id: "app-moderator-activity" %><br>
+  </div>
+  <%# activity.where(approved: 1).each do |user_activity| %>
+    <div class="panel-body">
+      <section id="app-mod-act-section">
+          <div id="activity-section"%>
+              <p>Activity performed on: <%= activity.activity_name %></p>
+              <p>Activity Type: <%= activity.user_activity_type %></p>
+              <p>Element ID: <%= activity.user_activity_id %></p>
+              <p>Activity Date: <%= activity.created_at.to_date %></p>
+              <p>Approved Status: <%= activity.approved %></p>
+          </div>
+      </section>
+    </div>
+  <%# end %>
 <% end %>
+</div>

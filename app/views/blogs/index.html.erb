@@ -1,8 +1,21 @@
-<%= link_to "Write a Blog!", new_blog_path %><br><br>
 <% if !current_user %>
   <%= link_to 'Have an account? Login from here', login_path %><br>
-<% elsif current_user && ( current_user.user_role.role == 0 || current_user.user_role.role == 1 ) %>
-  <%= render 'admin_mod_index' %>
-<% else %>
-  <%= render 'user_blog_index' %>
+  <%= link_to "Write a Blog!", new_blog_path %>
 <% end %>
+<% @blogs.each do |blog| %>
+  <div id="blog_body">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <u><%= link_to "#{blog.title}", blog_path(blog) %></u>&nbsp
+        <%= '~ ' + blog.user.full_name %>&nbsp&nbsp
+        <% if ( current_user && ( current_user.is_admin? || current_user.is_moderator? || blog.user_id == current_user.id)) %>
+          <%= link_to 'Edit Blog', edit_blog_path(blog) %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+      <p><%= truncate(blog.body, length: 200, escape: false) %> <%=link_to 'Read More', blog_path(blog) %><br></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
