@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    if ( current_user && current_user.user_role.role == 0 )
+    if ( user_signed_in? && current_user.is_admin? )
       @activity = Activity.find(params[:id])
       @activity.update(approved: 1)
     else

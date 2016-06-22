@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :sessions
+  get 'registrations/after_sign_up_path_for'
+
   devise_for :users
   resources :users do
     patch :change_role, on: :member
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'sessions#new'
+  root 'blogs#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

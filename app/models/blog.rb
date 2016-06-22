@@ -5,7 +5,7 @@ class Blog < ActiveRecord::Base
 
   validates :title, :category, :body, presence: true
 
-  after_save :create_destroy_activity, if: proc { hidden_changed? && hidden }
+  # after_save :create_destroy_activity, if: proc { hidden_changed? && hidden }
 
   def create_update_activity(current_user)
     activity = activities.create(activity_name: "update", user_id: current_user.id)

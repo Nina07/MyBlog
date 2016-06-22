@@ -13,7 +13,7 @@
       <%= password_field_tag :password, params[:password], placeholder: "Enter your Password" %>
       <br><br>
         <%= submit_tag 'Login' , id: "button" %><br><br>
-      <%= link_to 'New User? Sign Up here', new_user_path %>
+      <%= link_to 'New User? Sign Up here', new_user_registration_path %>
     <% end %>
     <br>
     <%= link_to 'Check out User Blogs', blogs_path %>

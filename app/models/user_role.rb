@@ -1,7 +1,7 @@
 class UserRole < ActiveRecord::Base
    ROLE_HASH = {
-      0 => :admin,
-      1 => :moderator,
-      2 => :normal_user
+      1 => :admin,
+      2 => :moderator,
+      3 => :normal_user
    }
 end

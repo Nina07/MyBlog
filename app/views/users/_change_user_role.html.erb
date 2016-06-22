@@ -1,4 +1,4 @@
 <%= form_for(user) do |f| %>
-  <%= f.select :user_role_id, [["Admin", 0], ["Moderator", 1], ["User", 2]] %>
+  <%= f.select :user_role_id, UserRole::ROLE_HASH.to_a.map(&:reverse) %>
   <%= f.submit 'Change Role' %>
 <% end %>

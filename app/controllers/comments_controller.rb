@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
 
   def authorize!
     unless user_authorized?
-      flash[:alert] = 'Aunauthorized'
+      flash[:alert] = 'Unauthorized'
       redirect_to :back
      end
   end

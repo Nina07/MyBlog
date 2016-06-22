@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, except: [ :index, :new, :create , :change_role]
-  before_action :authenticate_user
-  skip_before_action :authenticate_user , only: [ :new,:create ]
+  before_action :user_signed_in?, except: [:new, :create]
   def index
     @regular_users = User.where(user_role_id: 3)
     @moderators = User.where(user_role_id: 2)
