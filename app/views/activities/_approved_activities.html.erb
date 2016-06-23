@@ -3,7 +3,6 @@
   <div class="panel-heading">
     <%= link_to "#{activity.user.full_name}", "#", id: "app-moderator-activity" %><br>
   </div>
-  <%# activity.where(approved: 1).each do |user_activity| %>
     <div class="panel-body">
       <section id="app-mod-act-section">
           <div id="activity-section"%>
@@ -15,6 +14,5 @@
           </div>
       </section>
     </div>
-  <%# end %>
 <% end %>
 </div>

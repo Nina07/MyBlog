@@ -10,15 +10,10 @@ class Activity < ActiveRecord::Base
 
   def self.user_activities
     user_ids = Activity.pluck('distinct user_id')
-    approved_act = Hash.new { |hash, key| hash[key] = Array.new }
-    unapproved_act = approved_act.clone
-    user_ids.each do |id|
-      User.find(id).activities.each do |activity|
-        if activity.approved
-          approved_act[id] << activity
-        else
-          unapproved_act[id] << activity
-        end
+    User.where(id: user_ids).each_with_object({}) do |user, user_activities|
+      user_activities[user.full_name] = { approved: [], unapproved: [] }
+      user.activities.each do |activity|
+        user_activities[user.full_name][activity.approved ? :approved : :unapproved] << activity
       end
     end
   end

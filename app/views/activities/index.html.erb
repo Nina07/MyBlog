@@ -1,10 +1,9 @@
 <h3>Moderator Activities</h3>
-<%= link_to 'Unapproved Activities',"#", id: "unapproved-activities" %><br><br>
-<div class="unapproved-activities-section">
-  <%= render 'unapproved_activities' %>
-</div>
-
-<%= link_to 'Approved Activities', "#", id: "approved-activities" %><br><br>
-<div class="approved-activities-section">
-  <%= render 'approved_activities' %>
-</div>
+<% Activity.user_activities.each do |key,value| %>
+  <legend><%= link_to "#{key}", "#", id: "app-moderator-activity" %></legend>
+  <section id="app-mod-act-section">
+    <% value.each do |k,v| %>
+      <div class="well"><%= "#{k} #{v}" %></div>
+    <% end %>
+  </section>
+<% end %>
