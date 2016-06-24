@@ -4,17 +4,18 @@ class Comment < ActiveRecord::Base
   has_many   :activities, as: :user_activity
   validates  :data, :blog_id, presence: true
 
-  def comment_owner?(current_user)
-    user_id == current_user.id
+  def hide(current_user)
+    update(hidden: true)
+    create_destroy_activity(current_user)
   end
 
-  def create_update_activity(current_user,changes)
+  def create_update_activity(current_user)
     activity = activities.create(activity_name: "update", user_id: current_user.id)
-    TrackActivity.save_activity_updates(changes,activity.id)
+    TrackActivity.create(activity_content: changes, activity_id: activity.id)
   end
 
   def create_destroy_activity(current_user)
     activity = activities.create(activity_name: "destroy", user_id: current_user.id)
-    TrackActivity.save_activity_updates(changes,activity.id)
+    TrackActivity.create(activity_content: {user_activity_type: activity.user_activity_type}, activity_id: activity.id)
   end
 end

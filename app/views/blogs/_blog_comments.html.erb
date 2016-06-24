@@ -3,7 +3,7 @@
     <div id=<%= "edit-comment-#{comment.id}" %>>
       <p><%= comment.data %></p>
     </div>
-  <% if comment.comment_owner?(current_user) || !current_user.is_normal_user? %>
+  <% if comment.user.comment_owner?(current_user) || !current_user.is_normal_user? %>
       <div class=<%= "comment-links-#{comment.id}" %>>
         <%= content_tag :div, class: "hide-comment", data: { current_comment: comment } do %>
         <% end %>
@@ -14,7 +14,7 @@
       <p>
         <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} , id: "delete-comment" %>
       </p>
-    <% elsif comment.blog.blog_owner?(current_user) %>
+    <% elsif comment.user.blog_owner?(current_user) %>
       <p>
         <%= link_to 'Delete', blog_comment_path(@blog,comment), method: :delete , data: { confirm: 'Are you sure?'} %>
       </p>

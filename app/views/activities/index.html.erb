@@ -1,9 +1,30 @@
 <h3>Moderator Activities</h3>
+<%= link_to 'Delete', "#", id: "delete-single-activity" %>
+<%= link_to 'Delete All', "#", id: "delete-all-activities" %>
 <% Activity.user_activities.each do |key,value| %>
   <legend><%= link_to "#{key}", "#", id: "app-moderator-activity" %></legend>
   <section id="app-mod-act-section">
-    <% value.each do |k,v| %>
-      <div class="well"><%= "#{k} #{v}" %></div>
+    <% value.delete_if { |k,v| v.blank?} %>
+    <% value.each do |status,activity| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <p><%= status %></p>
+        </div>
+        <% activity.each do |user_activity| %>
+          <%# form_tag do |f| %>
+            <div class="panel-body">
+              <div class="checkbox">
+                <label><input type="checkbox" value="">
+                  <p>Activity on:<%= user_activity.activity_name %></p>
+                  <p>Activity Type:<%= user_activity.user_activity_type %></p>
+                  <p>Created at:<%= user_activity.created_at.to_date %></p>
+                </label>
+              </div>
+            </div>
+            <%#= f.submit_tag 'Delete' %>
+          <%# end %>
+        <% end %>
+      </div>
     <% end %>
   </section>
 <% end %>

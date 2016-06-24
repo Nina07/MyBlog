@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     f_name.capitalize + ' ' + l_name.capitalize
   end
 
+  def blog_owner?(current_user)
+    id == current_user.id
+  end
+
+  def comment_owner?(current_user)
+    id == current_user.id
+  end
+
   UserRole::ROLE_HASH.values.each do |role_name|
     define_method("is_#{role_name}?") do
       UserRole::ROLE_HASH[user_role.role] == role_name #this type of usage helps in saving database interactions, as we have declared a hash in UserRole model , it checks values directly from there.

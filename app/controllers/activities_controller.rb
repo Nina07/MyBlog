@@ -28,4 +28,7 @@ class ActivitiesController < ApplicationController
     @activity.destroy
     redirect_to activities_path
   end
+
+  def delete_activity
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622073813) do
+ActiveRecord::Schema.define(version: 20160624102411) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name",      limit: 255
@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 20160622073813) do
     t.string   "title",      limit: 255
     t.string   "category",   limit: 255
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.text     "body",       limit: 65535
+    t.boolean  "hidden",                   default: false
   end
 
   add_index "blogs", ["user_id"], name: "index_blogs_on_user_id", using: :btree
@@ -47,8 +48,9 @@ ActiveRecord::Schema.define(version: 20160622073813) do
     t.integer  "user_id",    limit: 4
     t.integer  "blog_id",    limit: 4
     t.text     "data",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "hidden",                   default: false
   end
 
   add_index "comments", ["blog_id"], name: "index_comments_on_blog_id", using: :btree

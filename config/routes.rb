@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
   resources :activities
+
+  put 'activities/delete_activity', to:  'activities#delete_activity'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

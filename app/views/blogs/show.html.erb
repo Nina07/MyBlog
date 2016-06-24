@@ -5,7 +5,7 @@
   <p>
     <%= sanitize @blog.body, tags: %w(b i u) %>
   </p>
-  <% if @blog.blog_owner?(current_user) || !current_user.is_normal_user? %>
+  <% if authorized_role? %>
     <%= link_to 'Edit Blog', edit_blog_path(@blog) %>
     <%= link_to 'Delete Blog', blog_path(@blog), method: :delete, data: { confirm: "Are you sure?"} %><br><br>
   <% end %>
